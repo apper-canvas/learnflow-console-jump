@@ -9,6 +9,7 @@ const VideoPlayer = ({
   title,
   onProgress,
   onComplete,
+  onTimestampRequest,
   initialTime = 0,
   ...props 
 }) => {
@@ -35,7 +36,7 @@ const VideoPlayer = ({
     }
   };
 
-  const handleTimeUpdate = () => {
+const handleTimeUpdate = () => {
     if (videoRef.current) {
       const current = videoRef.current.currentTime;
       const total = videoRef.current.duration;
@@ -48,6 +49,22 @@ const VideoPlayer = ({
       }
     }
   };
+
+  // Handle seek to timestamp from external source
+  useEffect(() => {
+    if (onTimestampRequest && videoRef.current) {
+      const handleSeek = (timestamp) => {
+        videoRef.current.currentTime = timestamp;
+        setCurrentTime(timestamp);
+      };
+      
+      // This would be called when seeking to a note timestamp
+      if (typeof onTimestampRequest === 'function') {
+        // Store the seek function for external use
+        videoRef.current.seekTo = handleSeek;
+      }
+    }
+  }, [onTimestampRequest]);
 
   const handleLoadedMetadata = () => {
     if (videoRef.current) {

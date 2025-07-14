@@ -1,5 +1,6 @@
 import progressData from "@/services/mockData/progress.json";
 import coursesData from "@/services/mockData/courses.json";
+import { noteService } from "@/services/api/noteService";
 
 class ProgressService {
   constructor() {
