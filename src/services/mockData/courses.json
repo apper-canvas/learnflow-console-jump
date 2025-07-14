@@ -1,0 +1,236 @@
+[
+  {
+    "Id": 1,
+    "title": "Complete React Development Course",
+    "description": "Master modern React development with hooks, context, and best practices. Build real-world applications from scratch.",
+    "instructor": "Sarah Johnson",
+    "duration": 12,
+    "difficulty": "Intermediate",
+    "category": "Programming",
+    "thumbnail": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop",
+    "modules": [
+      {
+        "Id": 1,
+        "title": "React Fundamentals",
+        "lessons": [
+          {
+            "Id": 1,
+            "title": "Introduction to React",
+            "type": "video",
+            "duration": 25,
+            "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+            "completed": false
+          },
+          {
+            "Id": 2,
+            "title": "JSX and Components",
+            "type": "video",
+            "duration": 30,
+            "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+            "completed": false
+          },
+          {
+            "Id": 3,
+            "title": "Props and State",
+            "type": "video",
+            "duration": 35,
+            "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+            "completed": false
+          }
+        ]
+      },
+      {
+        "Id": 2,
+        "title": "Advanced React Concepts",
+        "lessons": [
+          {
+            "Id": 4,
+            "title": "React Hooks",
+            "type": "video",
+            "duration": 40,
+            "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+            "completed": false
+          },
+          {
+            "Id": 5,
+            "title": "Context API",
+            "type": "video",
+            "duration": 35,
+            "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+            "completed": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "title": "UI/UX Design Principles",
+    "description": "Learn the fundamentals of user interface and user experience design. Create beautiful, functional designs.",
+    "instructor": "David Chen",
+    "duration": 8,
+    "difficulty": "Beginner",
+    "category": "Design",
+    "thumbnail": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop",
+    "modules": [
+      {
+        "Id": 3,
+        "title": "Design Fundamentals",
+        "lessons": [
+          {
+            "Id": 6,
+            "title": "Color Theory",
+            "type": "video",
+            "duration": 20,
+            "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+            "completed": false
+          },
+          {
+            "Id": 7,
+            "title": "Typography",
+            "type": "video",
+            "duration": 25,
+            "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+            "completed": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 3,
+    "title": "Digital Marketing Strategy",
+    "description": "Build comprehensive digital marketing campaigns that drive results. Learn SEO, social media, and analytics.",
+    "instructor": "Emma Rodriguez",
+    "duration": 10,
+    "difficulty": "Intermediate",
+    "category": "Marketing",
+    "thumbnail": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
+    "modules": [
+      {
+        "Id": 4,
+        "title": "Marketing Fundamentals",
+        "lessons": [
+          {
+            "Id": 8,
+            "title": "Market Research",
+            "type": "video",
+            "duration": 30,
+            "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+            "completed": false
+          },
+          {
+            "Id": 9,
+            "title": "Target Audience",
+            "type": "video",
+            "duration": 25,
+            "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+            "completed": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 4,
+    "title": "Data Science with Python",
+    "description": "Analyze data and build machine learning models using Python. Perfect for beginners to data science.",
+    "instructor": "Michael Park",
+    "duration": 15,
+    "difficulty": "Advanced",
+    "category": "Data Science",
+    "thumbnail": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
+    "modules": [
+      {
+        "Id": 5,
+        "title": "Python Basics",
+        "lessons": [
+          {
+            "Id": 10,
+            "title": "Python Syntax",
+            "type": "video",
+            "duration": 35,
+            "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+            "completed": false
+          },
+          {
+            "Id": 11,
+            "title": "Data Structures",
+            "type": "video",
+            "duration": 40,
+            "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+            "completed": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 5,
+    "title": "Business Strategy Fundamentals",
+    "description": "Learn how to develop and implement effective business strategies. Essential for entrepreneurs and managers.",
+    "instructor": "Lisa Thompson",
+    "duration": 6,
+    "difficulty": "Beginner",
+    "category": "Business",
+    "thumbnail": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop",
+    "modules": [
+      {
+        "Id": 6,
+        "title": "Strategy Planning",
+        "lessons": [
+          {
+            "Id": 12,
+            "title": "SWOT Analysis",
+            "type": "video",
+            "duration": 25,
+            "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+            "completed": false
+          },
+          {
+            "Id": 13,
+            "title": "Competitive Analysis",
+            "type": "video",
+            "duration": 30,
+            "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+            "completed": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 6,
+    "title": "Advanced JavaScript Concepts",
+    "description": "Deep dive into advanced JavaScript topics including async programming, closures, and modern ES6+ features.",
+    "instructor": "Alex Kim",
+    "duration": 14,
+    "difficulty": "Advanced",
+    "category": "Programming",
+    "thumbnail": "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=300&fit=crop",
+    "modules": [
+      {
+        "Id": 7,
+        "title": "Advanced Concepts",
+        "lessons": [
+          {
+            "Id": 14,
+            "title": "Closures and Scope",
+            "type": "video",
+            "duration": 45,
+            "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+            "completed": false
+          },
+          {
+            "Id": 15,
+            "title": "Async Programming",
+            "type": "video",
+            "duration": 50,
+            "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+            "completed": false
+          }
+        ]
+      }
+    ]
+  }
+]

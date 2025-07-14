@@ -1,0 +1,117 @@
+[
+  {
+    "Id": 1,
+    "lessonId": 1,
+    "title": "React Fundamentals Quiz",
+    "passingScore": 70,
+    "questions": [
+      {
+        "Id": 1,
+        "question": "What is React primarily used for?",
+        "options": [
+          "Building user interfaces",
+          "Server-side programming",
+          "Database management",
+          "Mobile app development"
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "Id": 2,
+        "question": "What does JSX stand for?",
+        "options": [
+          "JavaScript Extension",
+          "JavaScript XML",
+          "Java Syntax Extension",
+          "JavaScript Extreme"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "Id": 3,
+        "question": "Which method is used to render React components?",
+        "options": [
+          "ReactDOM.display()",
+          "React.show()",
+          "ReactDOM.render()",
+          "React.render()"
+        ],
+        "correctAnswer": 2
+      },
+      {
+        "Id": 4,
+        "question": "What is a React component?",
+        "options": [
+          "A reusable piece of UI",
+          "A database table",
+          "A server endpoint",
+          "A CSS file"
+        ],
+        "correctAnswer": 0
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "lessonId": 8,
+    "title": "Market Research Quiz",
+    "passingScore": 80,
+    "questions": [
+      {
+        "Id": 5,
+        "question": "What is primary market research?",
+        "options": [
+          "Research using existing data",
+          "Research conducted by the company itself",
+          "Research from government sources",
+          "Research from competitors"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "Id": 6,
+        "question": "Which is NOT a common market research method?",
+        "options": [
+          "Surveys",
+          "Focus groups",
+          "Interviews",
+          "Code reviews"
+        ],
+        "correctAnswer": 3
+      },
+      {
+        "Id": 7,
+        "question": "What does demographic data include?",
+        "options": [
+          "Age, gender, income",
+          "Product features",
+          "Company revenue",
+          "Website analytics"
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "Id": 8,
+        "question": "What is the purpose of market segmentation?",
+        "options": [
+          "To increase costs",
+          "To target specific groups",
+          "To reduce quality",
+          "To eliminate competition"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "Id": 9,
+        "question": "What is a target market?",
+        "options": [
+          "All potential customers",
+          "The entire population",
+          "A specific group of customers",
+          "Competitors only"
+        ],
+        "correctAnswer": 2
+      }
+    ]
+  }
+]

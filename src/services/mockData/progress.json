@@ -1,0 +1,38 @@
+[
+  {
+    "Id": 1,
+    "courseId": 1,
+    "completedLessons": [1, 2],
+    "quizScores": {
+      "1": {
+        "score": 85,
+        "passed": true,
+        "answers": [0, 1, 2, 0]
+      }
+    },
+    "lastAccessed": "2024-01-15T14:30:00Z",
+    "enrolledAt": "2024-01-10T10:00:00Z"
+  },
+  {
+    "Id": 2,
+    "courseId": 2,
+    "completedLessons": [6],
+    "quizScores": {},
+    "lastAccessed": "2024-01-14T16:45:00Z",
+    "enrolledAt": "2024-01-12T09:30:00Z"
+  },
+  {
+    "Id": 3,
+    "courseId": 3,
+    "completedLessons": [8, 9],
+    "quizScores": {
+      "2": {
+        "score": 92,
+        "passed": true,
+        "answers": [1, 0, 2, 1, 0]
+      }
+    },
+    "lastAccessed": "2024-01-13T11:20:00Z",
+    "enrolledAt": "2024-01-08T15:00:00Z"
+  }
+]
