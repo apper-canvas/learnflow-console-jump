@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { cn } from "@/utils/cn";
 import ApperIcon from "@/components/ApperIcon";
+import CourseSyllabus from "@/components/organisms/CourseSyllabus";
+import Badge from "@/components/atoms/Badge";
 import Button from "@/components/atoms/Button";
 import Card from "@/components/atoms/Card";
-import Badge from "@/components/atoms/Badge";
+import Input from "@/components/atoms/Input";
 import Progress from "@/components/atoms/Progress";
-import CourseSyllabus from "@/components/organisms/CourseSyllabus";
-import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
+import Loading from "@/components/ui/Loading";
 import { courseService } from "@/services/api/courseService";
 import { progressService } from "@/services/api/progressService";
 
@@ -21,6 +22,14 @@ const CourseDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [enrolling, setEnrolling] = useState(false);
+  const [showEnrollForm, setShowEnrollForm] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: ""
+  });
+  const [formErrors, setFormErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     loadCourseData();
@@ -43,19 +52,81 @@ const CourseDetail = () => {
     }
   };
 
-  const handleEnroll = async () => {
+const handleEnroll = () => {
+    setShowEnrollForm(true);
+  };
+
+  const validateForm = () => {
+    const errors = {};
+    
+    if (!formData.name.trim()) {
+      errors.name = "Name is required";
+    }
+    
+    if (!formData.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      errors.email = "Please enter a valid email address";
+    }
+    
+    if (!formData.phone.trim()) {
+      errors.phone = "Phone number is required";
+    } else if (!/^\+?[\d\s-()]+$/.test(formData.phone)) {
+      errors.phone = "Please enter a valid phone number";
+    }
+    
+    return errors;
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    
+    const errors = validateForm();
+    setFormErrors(errors);
+    
+    if (Object.keys(errors).length > 0) {
+      return;
+    }
+    
     try {
-      setEnrolling(true);
+      setSubmitting(true);
       await progressService.enroll(parseInt(courseId));
       toast.success("Successfully enrolled in course!");
+      
       // Refresh progress data
       const progressData = await progressService.getProgress(parseInt(courseId));
       setProgress(progressData);
+      
+      // Reset form and close modal
+      setFormData({ name: "", email: "", phone: "" });
+      setShowEnrollForm(false);
     } catch (err) {
       toast.error("Failed to enroll in course. Please try again.");
     } finally {
-      setEnrolling(false);
+      setSubmitting(false);
     }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    
+    // Clear error when user starts typing
+    if (formErrors[name]) {
+      setFormErrors(prev => ({
+        ...prev,
+        [name]: ""
+      }));
+    }
+  };
+
+  const handleCloseForm = () => {
+    setShowEnrollForm(false);
+    setFormData({ name: "", email: "", phone: "" });
+    setFormErrors({});
   };
 
   const handleStartLearning = () => {
@@ -163,17 +234,16 @@ const CourseDetail = () => {
                 </Button>
               </div>
             ) : (
-              <Button
-                onClick={handleEnroll}
-                disabled={enrolling}
-                variant="secondary"
-                size="lg"
-                className="w-full sm:w-auto"
-              >
-                {enrolling ? "Enrolling..." : "Enroll Now"}
-                <ApperIcon name="Plus" className="w-5 h-5 ml-2" />
-              </Button>
-            )}
+<Button
+              onClick={handleEnroll}
+              variant="secondary"
+              size="lg"
+              className="w-full sm:w-auto"
+            >
+              Enroll Now
+              <ApperIcon name="Plus" className="w-5 h-5 ml-2" />
+            </Button>
+          )}
           </div>
           
           <div className="relative">
@@ -279,7 +349,113 @@ const CourseDetail = () => {
             </p>
           </Card>
         </div>
-      </div>
+</div>
+
+      {/* Enrollment Form Modal */}
+      {showEnrollForm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-2xl w-full max-w-md p-6 relative">
+            <button
+              onClick={handleCloseForm}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <ApperIcon name="X" className="w-6 h-6" />
+            </button>
+            
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Enroll in Course</h2>
+              <p className="text-gray-600">
+                Please provide your information to complete enrollment for "{course?.title}".
+              </p>
+            </div>
+            
+            <form onSubmit={handleFormSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                  Full Name *
+                </label>
+                <Input
+                  id="name"
+                  name="name"
+                  type="text"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="Enter your full name"
+                  className={cn(
+                    "w-full",
+                    formErrors.name && "border-red-500 focus:border-red-500 focus:ring-red-500"
+                  )}
+                />
+                {formErrors.name && (
+                  <p className="mt-1 text-sm text-red-600">{formErrors.name}</p>
+                )}
+              </div>
+              
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                  Email Address *
+                </label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Enter your email address"
+                  className={cn(
+                    "w-full",
+                    formErrors.email && "border-red-500 focus:border-red-500 focus:ring-red-500"
+                  )}
+                />
+                {formErrors.email && (
+                  <p className="mt-1 text-sm text-red-600">{formErrors.email}</p>
+                )}
+              </div>
+              
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                  Phone Number *
+                </label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder="Enter your phone number"
+                  className={cn(
+                    "w-full",
+                    formErrors.phone && "border-red-500 focus:border-red-500 focus:ring-red-500"
+                  )}
+                />
+                {formErrors.phone && (
+                  <p className="mt-1 text-sm text-red-600">{formErrors.phone}</p>
+                )}
+              </div>
+              
+              <div className="flex space-x-3 pt-4">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={handleCloseForm}
+                  className="flex-1"
+                  disabled={submitting}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  variant="primary"
+                  className="flex-1"
+                  disabled={submitting}
+                >
+                  {submitting ? "Enrolling..." : "Complete Enrollment"}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
