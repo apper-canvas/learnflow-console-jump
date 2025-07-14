@@ -202,12 +202,12 @@ const LearningDashboard = ({
                           <span className="text-xs">{course.difficulty}</span>
                         </div>
                       </div>
-                      <div className="pt-2">
+<div className="pt-2">
                         <Button 
                           size="sm" 
                           className="w-full"
                           as={Link} 
-                          to={`/course/${course.Id}`}
+                          to={`/learn/${course.Id}`}
                         >
                           View Course
                         </Button>
