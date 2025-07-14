@@ -115,8 +115,51 @@ class ProgressService {
         timestamp: new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString()
       }
     ];
+return activities;
+  }
+
+  async getRecommendations() {
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 300));
     
-    return activities;
+    // Get user's completed courses
+    const enrolledCourses = await this.getEnrolledCourses();
+    const completedCourses = enrolledCourses.filter(course => course.progress >= 100);
+    
+    if (completedCourses.length === 0) {
+      // If no completed courses, recommend beginner courses
+      return this.courses
+        .filter(course => course.difficulty === 'Beginner' && 
+                !enrolledCourses.some(enrolled => enrolled.Id === course.Id))
+        .slice(0, 6);
+    }
+    
+    // Get categories and difficulties of completed courses
+    const completedCategories = [...new Set(completedCourses.map(c => c.category))];
+    const completedDifficulties = completedCourses.map(c => c.difficulty);
+    const hasIntermediate = completedDifficulties.includes('Intermediate');
+    const hasAdvanced = completedDifficulties.includes('Advanced');
+    
+    // Recommend courses based on completed categories and difficulty progression
+    const recommendations = this.courses.filter(course => {
+      // Exclude already enrolled courses
+      if (enrolledCourses.some(enrolled => enrolled.Id === course.Id)) {
+        return false;
+      }
+      
+      // Recommend courses in same categories
+      const sameCategory = completedCategories.includes(course.category);
+      
+      // Recommend next difficulty level
+      const appropriateDifficulty = 
+        (course.difficulty === 'Intermediate' && !hasIntermediate) ||
+        (course.difficulty === 'Advanced' && hasIntermediate && !hasAdvanced) ||
+        (course.difficulty === 'Beginner' && completedCourses.length < 2);
+      
+      return sameCategory || appropriateDifficulty;
+    });
+    
+    return recommendations.slice(0, 6);
   }
 }
 
